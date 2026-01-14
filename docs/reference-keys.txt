@@ -2,7 +2,10 @@ introduction-r-for-bioinformatics-and-biomedical-data-analysis
 what-is-r
 why-use-r-instead-of-only-spreadsheets-or-gui-tools
 r-in-bioinformatics-and-biomedical-research
+a-gentle-view-of-the-bioconductor-ecosystem
+a-typical-r-based-workflow-in-a-biomedical-project
 less-about-programming-more-about-data-analysis
+what-you-need-and-do-not-need-to-know-in-advance
 how-to-use-this-book
 getting-started-with-r-and-rstudio
 r-vs-rstudio-what-is-the-difference

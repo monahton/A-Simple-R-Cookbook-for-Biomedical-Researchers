@@ -146,9 +146,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="1.1.1" data-path="what-is-r.html"><a href="what-is-r.html#why-use-r-instead-of-only-spreadsheets-or-gui-tools"><i class="fa fa-check"></i><b>1.1.1</b> Why use R instead of only spreadsheets or GUI tools?</a></li>
 </ul></li>
-<li class="chapter" data-level="1.2" data-path="r-in-bioinformatics-and-biomedical-research.html"><a href="r-in-bioinformatics-and-biomedical-research.html"><i class="fa fa-check"></i><b>1.2</b> R in bioinformatics and biomedical research</a></li>
+<li class="chapter" data-level="1.2" data-path="r-in-bioinformatics-and-biomedical-research.html"><a href="r-in-bioinformatics-and-biomedical-research.html"><i class="fa fa-check"></i><b>1.2</b> R in bioinformatics and biomedical research</a>
+<ul>
+<li class="chapter" data-level="1.2.1" data-path="r-in-bioinformatics-and-biomedical-research.html"><a href="r-in-bioinformatics-and-biomedical-research.html#a-gentle-view-of-the-bioconductor-ecosystem"><i class="fa fa-check"></i><b>1.2.1</b> A gentle view of the Bioconductor ecosystem</a></li>
+<li class="chapter" data-level="1.2.2" data-path="r-in-bioinformatics-and-biomedical-research.html"><a href="r-in-bioinformatics-and-biomedical-research.html#a-typical-r-based-workflow-in-a-biomedical-project"><i class="fa fa-check"></i><b>1.2.2</b> A typical R-based workflow in a biomedical project</a></li>
+</ul></li>
 <li class="chapter" data-level="1.3" data-path="less-about-programming-more-about-data-analysis.html"><a href="less-about-programming-more-about-data-analysis.html"><i class="fa fa-check"></i><b>1.3</b> Less about programming, more about data analysis</a></li>
-<li class="chapter" data-level="1.4" data-path="how-to-use-this-book.html"><a href="how-to-use-this-book.html"><i class="fa fa-check"></i><b>1.4</b> How to use this book</a></li>
+<li class="chapter" data-level="1.4" data-path="what-you-need-and-do-not-need-to-know-in-advance.html"><a href="what-you-need-and-do-not-need-to-know-in-advance.html"><i class="fa fa-check"></i><b>1.4</b> What you need (and do not need) to know in advance</a></li>
+<li class="chapter" data-level="1.5" data-path="how-to-use-this-book.html"><a href="how-to-use-this-book.html"><i class="fa fa-check"></i><b>1.5</b> How to use this book</a></li>
 </ul></li>
 <li class="chapter" data-level="2" data-path="getting-started-with-r-and-rstudio.html"><a href="getting-started-with-r-and-rstudio.html"><i class="fa fa-check"></i><b>2</b> Getting Started with R and RStudio</a>
 <ul>
@@ -258,23 +263,51 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="r-in-bioinformatics-and-biomedical-research" class="section level2 hasAnchor" number="1.2">
 <h2><span class="header-section-number">1.2</span> R in bioinformatics and biomedical research<a href="r-in-bioinformatics-and-biomedical-research.html#r-in-bioinformatics-and-biomedical-research" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>R is widely used in:</p>
+<p>R is widely used in many parts of modern biology and medicine, for example:</p>
 <ul>
-<li><strong>Transcriptomics</strong> (microarrays, RNA-seq, single-cell RNA-seq)</li>
-<li><strong>Genomics and variant analysis</strong></li>
-<li><strong>Proteomics and metabolomics</strong></li>
-<li><strong>Flow cytometry and imaging data analysis</strong></li>
-<li><strong>Clinical data analysis and epidemiology</strong></li>
+<li><strong>Transcriptomics</strong>: analysing gene expression from microarrays, bulk RNA sequencing, single-cell RNA sequencing and spatial transcriptomics.</li>
+<li><strong>Genomics and variant analysis</strong>: summarising variant calls, annotating variants with external databases, and exploring mutation patterns.</li>
+<li><strong>Proteomics and metabolomics</strong>: processing quantitative feature tables, normalising intensities, and comparing groups.</li>
+<li><strong>Flow and mass cytometry</strong>: implementing gating strategies, exploring high-dimensional marker panels, and producing publication-quality plots.</li>
+<li><strong>High-content imaging</strong>: handling extracted features from microscopy and checking quality control metrics.</li>
+<li><strong>Clinical and epidemiological research</strong>: describing cohorts, fitting regression models, exploring risk factors, and performing survival analysis.</li>
 </ul>
-<p>The Bioconductor project (a large collection of R packages for bioinformatics) has made R particularly strong for high-throughput data.</p>
-<p>However, in this book we do <strong>not</strong> assume you are doing advanced omics analysis from day one. Instead, we focus on the <strong>core skills</strong> that apply to almost any biomedical dataset:</p>
+<p>While the scientific questions differ, the underlying data tasks are strikingly similar:</p>
 <ul>
-<li>Reading data into R</li>
-<li>Cleaning and transforming variables</li>
-<li>Combining multiple tables</li>
-<li>Summarising and visualising results</li>
+<li>Bringing data from different sources into a consistent format.</li>
+<li>Checking data quality and handling missing or unusual values.</li>
+<li>Transforming variables into forms that are easier to interpret.</li>
+<li>Comparing groups and visualising patterns.</li>
 </ul>
-<p>Once you are comfortable with those foundations, you will be able to pick up more specialised tools (for RNA-seq, proteomics, etc.) much more easily.</p>
+<p>This book concentrates on these <strong>core skills</strong>, which are useful regardless of whether you are working with a small qPCR experiment or a large sequencing study.</p>
+<div id="a-gentle-view-of-the-bioconductor-ecosystem" class="section level3 hasAnchor" number="1.2.1">
+<h3><span class="header-section-number">1.2.1</span> A gentle view of the Bioconductor ecosystem<a href="r-in-bioinformatics-and-biomedical-research.html#a-gentle-view-of-the-bioconductor-ecosystem" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>You may have heard of <strong>Bioconductor</strong>, a large collection of R packages focused on high-throughput biology.</p>
+<p>Bioconductor provides tools for specialised tasks such as:</p>
+<ul>
+<li>Reading and organising large assay datasets like RNA-seq counts.</li>
+<li>Connecting experimental measurements with gene annotations and pathways.</li>
+<li>Applying established workflows for typical genomics problems.</li>
+</ul>
+<p>From the outside, Bioconductor can look intimidating because it introduces its own objects and jargon. However, underneath the surface it still relies on the basic ideas you will learn in this book: tables of data, consistent sample identifiers, clear metadata, and visualisations.</p>
+<p>You do <strong>not</strong> need to understand Bioconductor in detail to follow this book. Instead, think of this chapter and the following ones as building the foundation that will make future encounters with Bioconductor (or similar ecosystems) much less stressful.</p>
+</div>
+<div id="a-typical-r-based-workflow-in-a-biomedical-project" class="section level3 hasAnchor" number="1.2.2">
+<h3><span class="header-section-number">1.2.2</span> A typical R-based workflow in a biomedical project<a href="r-in-bioinformatics-and-biomedical-research.html#a-typical-r-based-workflow-in-a-biomedical-project" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>To make things concrete, imagine a simple biomarker study comparing a new treatment to a control group.</p>
+<p>A typical R-based workflow might look like this:</p>
+<ol style="list-style-type: decimal">
+<li><strong>Define your question.</strong> For example: does the new treatment lead to a larger reduction in a particular biomarker compared with control after a certain follow-up time?</li>
+<li><strong>Organise your files.</strong> You collect exports from your instruments or data capture system and place them in a clearly structured project folder, rather than scattering them across your desktop.</li>
+<li><strong>Import the data into R.</strong> You bring clinical data, laboratory measurements, and any reference tables into R as tidy tables.</li>
+<li><strong>Clean and harmonise variables.</strong> You fix obvious issues such as inconsistent labels (for example “Male” vs “male”), incorrect types (numbers stored as text), and missing identifiers.</li>
+<li><strong>Combine tables.</strong> You link clinical information with laboratory measurements using patient or sample identifiers, ensuring that each row of the combined table really corresponds to a specific patient or sample.</li>
+<li><strong>Create derived measures.</strong> You calculate changes from baseline, ratios, or other summary measures that directly relate to your biological question.</li>
+<li><strong>Explore the data.</strong> You inspect distributions, look for outliers, and make informal comparisons between groups.</li>
+<li><strong>Summarise and communicate results.</strong> You create tables and figures that clearly show the key findings for colleagues, supervisors, or journal reviewers.</li>
+</ol>
+<p>The later chapters of this book will walk through each of these steps in more detail, using a small but realistic simulated dataset that mimics such a study.</p>
+</div>
 </div>
             </section>
 

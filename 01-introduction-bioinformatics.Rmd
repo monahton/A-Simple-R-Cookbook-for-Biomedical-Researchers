@@ -5,8 +5,9 @@ R is a free, open-source language designed for **data analysis and statistics**.
 In this chapter we will:
 
 - Explain what R is and why it is useful for biomedical researchers.
-- Discuss how R is used in bioinformatics.
-- Clarify the goals and style of this book.
+- Discuss how R is used in bioinformatics and related areas.
+- Describe what a typical R-based analysis looks like in practice.
+- Clarify the goals and style of this book: **more data analysis, less computer science**.
 
 ## What is R?
 
@@ -15,42 +16,88 @@ R is both:
 1. A **programming language**, and
 2. An **environment for data analysis**.
 
+As a language, R gives you a precise way to tell the computer what to do with your data. As an environment, it provides tools for viewing data, drawing plots, loading extension modules, and organising your work.
+
 You can think of R as a very smart calculator that understands tables of data, can draw figures, and can run statistical tests. Unlike spreadsheet software, R keeps a record of exactly what you did in code, which makes your work **reproducible** and **transparent**.
+
+In everyday use, you will interact with R by:
+
+- Sending short commands to be executed.
+- Saving longer sequences of commands into scripts that document your entire analysis.
+- Using additional collections of functions (called packages) that extend R with new methods.
+
+You do **not** need to master all parts of R to be productive. In this book we will focus on a practical subset of R that covers the most common steps in biomedical data analysis.
 
 ### Why use R instead of only spreadsheets or GUI tools?
 
 Many biomedical researchers start with tools like Excel, GraphPad Prism, or instrument vendor software. These tools are useful, but they have limitations:
 
-- Repeating the same analysis for many datasets becomes tedious.
-- Manual steps are easy to forget or mis-click, which can lead to subtle errors.
+- Repeating the same analysis for many datasets becomes tedious and error-prone.
+- Manual steps are easy to forget or mis-click, which can lead to subtle errors that are hard to detect.
 - Collaboration is harder because others cannot easily see every step you took.
+- Reproducing an analysis months later can be difficult if you have changed files by hand.
 
 R addresses these issues because:
 
-- Your analysis is written as **code**, so it can be saved, shared, and re-run.
-- You can apply the same code to new data with minimal changes.
-- You have access to thousands of **packages** contributed by other scientists.
+- Your analysis is expressed as **text instructions** (code) that can be saved, shared, and re-run.
+- You can apply the same instructions to new data with minimal changes.
+- You have access to thousands of **packages** contributed by other scientists and statisticians.
+- Figures and tables can be regenerated automatically whenever your data or analysis choices change.
+
+If you have ever wished you could "press one button" to redo a complex analysis for a new dataset, R allows you to get very close to that ideal once your script is written.
+
+Another important benefit is **transparency**. When your work is driven by code, every step is visible and reviewable. This is increasingly expected by journals, reviewers, and collaborators who care about reproducibility.
 
 ## R in bioinformatics and biomedical research
 
-R is widely used in:
+R is widely used in many parts of modern biology and medicine, for example:
 
-- **Transcriptomics** (microarrays, RNA-seq, single-cell RNA-seq)
-- **Genomics and variant analysis**
-- **Proteomics and metabolomics**
-- **Flow cytometry and imaging data analysis**
-- **Clinical data analysis and epidemiology**
+- **Transcriptomics**: analysing gene expression from microarrays, bulk RNA sequencing, single-cell RNA sequencing and spatial transcriptomics.
+- **Genomics and variant analysis**: summarising variant calls, annotating variants with external databases, and exploring mutation patterns.
+- **Proteomics and metabolomics**: processing quantitative feature tables, normalising intensities, and comparing groups.
+- **Flow and mass cytometry**: implementing gating strategies, exploring high-dimensional marker panels, and producing publication-quality plots.
+- **High-content imaging**: handling extracted features from microscopy and checking quality control metrics.
+- **Clinical and epidemiological research**: describing cohorts, fitting regression models, exploring risk factors, and performing survival analysis.
 
-The Bioconductor project (a large collection of R packages for bioinformatics) has made R particularly strong for high-throughput data.
+While the scientific questions differ, the underlying data tasks are strikingly similar:
 
-However, in this book we do **not** assume you are doing advanced omics analysis from day one. Instead, we focus on the **core skills** that apply to almost any biomedical dataset:
+- Bringing data from different sources into a consistent format.
+- Checking data quality and handling missing or unusual values.
+- Transforming variables into forms that are easier to interpret.
+- Comparing groups and visualising patterns.
 
-- Reading data into R
-- Cleaning and transforming variables
-- Combining multiple tables
-- Summarising and visualising results
+This book concentrates on these **core skills**, which are useful regardless of whether you are working with a small qPCR experiment or a large sequencing study.
 
-Once you are comfortable with those foundations, you will be able to pick up more specialised tools (for RNA-seq, proteomics, etc.) much more easily.
+### A gentle view of the Bioconductor ecosystem
+
+You may have heard of **Bioconductor**, a large collection of R packages focused on high-throughput biology.
+
+Bioconductor provides tools for specialised tasks such as:
+
+- Reading and organising large assay datasets like RNA-seq counts.
+- Connecting experimental measurements with gene annotations and pathways.
+- Applying established workflows for typical genomics problems.
+
+From the outside, Bioconductor can look intimidating because it introduces its own objects and jargon. However, underneath the surface it still relies on the basic ideas you will learn in this book: tables of data, consistent sample identifiers, clear metadata, and visualisations.
+
+You do **not** need to understand Bioconductor in detail to follow this book. Instead, think of this chapter and the following ones as building the foundation that will make future encounters with Bioconductor (or similar ecosystems) much less stressful.
+
+### A typical R-based workflow in a biomedical project
+
+To make things concrete, imagine a simple biomarker study comparing a new treatment to a control group.
+
+A typical R-based workflow might look like this:
+
+1. **Define your question.** For example: does the new treatment lead to a larger reduction in a particular biomarker compared with control after a certain follow-up time?
+2. **Organise your files.** You collect exports from your instruments or data capture system and place them in a clearly structured project folder, rather than scattering them across your desktop.
+3. **Import the data into R.** You bring clinical data, laboratory measurements, and any reference tables into R as tidy tables.
+4. **Clean and harmonise variables.** You fix obvious issues such as inconsistent labels (for example "Male" vs "male"), incorrect types (numbers stored as text), and missing identifiers.
+5. **Combine tables.** You link clinical information with laboratory measurements using patient or sample identifiers, ensuring that each row of the combined table really corresponds to a specific patient or sample.
+6. **Create derived measures.** You calculate changes from baseline, ratios, or other summary measures that directly relate to your biological question.
+7. **Explore the data.** You inspect distributions, look for outliers, and make informal comparisons between groups.
+8. **Summarise and communicate results.** You create tables and figures that clearly show the key findings for colleagues, supervisors, or journal reviewers.
+
+The later chapters of this book will walk through each of these steps in more detail, using a small but realistic simulated dataset that mimics such a study.
 
 ## Less about programming, more about data analysis
 
@@ -58,35 +105,64 @@ There are many excellent books that teach R as a general programming language or
 
 Our priorities are:
 
-- **Clarity**: Use simple language and concrete examples from biomedical research.
-- **Practicality**: Show tasks you actually need in day-to-day data analysis.
-- **Reproducibility**: Encourage good habits from the start.
+- **Clarity**: We use simple language and concrete examples drawn from biomedical research.
+- **Practicality**: We focus on tasks you are likely to face in everyday analysis work.
+- **Reproducibility**: We encourage habits that make it easier to rerun and share your work.
 
-We will explain enough programming concepts so that you understand what your code is doing, but we will not dive deep into things like object-oriented programming, advanced software design patterns, or building complex applications.
+We do introduce enough programming concepts for you to understand what your code is doing: ideas such as "objects", "functions", and "data structures". However, we deliberately spend **less time** on topics such as:
 
-If you can:
+- Advanced programming patterns or theories.
+- Building complex software systems.
+- Fine details of how R is implemented internally.
 
-- Load your data into R
-- Clean and reshape it
-- Join different tables
-- Make clear plots
-- Run basic analyses and export the results
+Instead, most of our effort goes into **using R as a practical tool**:
 
-…then this book has achieved its goal.
+- Getting your data into a clean, analysable form.
+- Checking that the numbers make sense.
+- Producing clear visual summaries.
+- Documenting your steps so that others (including your future self) can follow them.
+
+If by the end of the book you are able to confidently:
+
+- Load your own data into R.
+- Clean and reshape it into useful tables.
+- Join different sources of information.
+- Produce clear plots that highlight important patterns.
+- Run basic analyses and export the results for reports and manuscripts.
+
+…then this book has achieved its main goal.
+
+## What you need (and do not need) to know in advance
+
+You **do not** need to be a programmer or a "computer person" to benefit from this book. Many successful R users in biology started out firmly in the "I prefer the wet lab" camp.
+
+It helps if you:
+
+- Are comfortable moving files around on your computer and working with folders.
+- Have a basic sense of statistical ideas such as averages, variability, and simple comparisons between groups.
+- Are willing to experiment a little and read error messages when they appear.
+
+When we introduce new ideas, we will explain them in plain language first and only then connect them to R terminology. You can treat new concepts a bit like unfamiliar antibodies: read the datasheet, try them in a controlled setting, and see how they behave.
 
 ## How to use this book
 
 You can read the chapters in order, or jump directly to topics you need. However, we recommend that beginners at least skim the early chapters about:
 
-- R and RStudio
-- Data types and data structures
+- R and RStudio.
+- Data types and data structures.
 
 Later chapters on data wrangling and visualisation build on those concepts.
 
 Throughout the book we will:
 
-- Use a consistent coding style.
-- Show example code **and** the corresponding output.
-- Use a simple, simulated biomedical dataset packaged in **biomedrdata**.
+- Use a consistent coding style, so that patterns become familiar over time.
+- Accompany code with explanations in words, not just terse commands.
+- Use a simple, simulated biomedical dataset packaged in **biomedrdata** so that everyone can follow along with the same example.
 
-If something is confusing, do not worry—this is normal. Take your time, run the code yourself, and try small variations. Learning R is a bit like learning to pipette: at first it feels awkward, but with practice it becomes second nature.
+To get the most from the material, it is best to:
+
+- Actively follow along on your own computer rather than only reading.
+- Pause after short sections to reflect on how the ideas apply to your own projects.
+- Make small variations to examples—change a grouping variable, alter a threshold, or focus on a different subset of patients—to see how the outputs respond.
+
+If something is confusing, do not worry—this is normal. Learning R is a bit like learning a new experimental technique: at first it feels awkward and slow, but with repeated use you develop a kind of muscle memory. With time, the basic data-handling steps will become as routine as preparing a buffer or setting up a PCR reaction.

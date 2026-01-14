@@ -31,7 +31,7 @@
   
   
 <link rel="prev" href="r-in-bioinformatics-and-biomedical-research.html"/>
-<link rel="next" href="how-to-use-this-book.html"/>
+<link rel="next" href="what-you-need-and-do-not-need-to-know-in-advance.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -146,9 +146,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="1.1.1" data-path="what-is-r.html"><a href="what-is-r.html#why-use-r-instead-of-only-spreadsheets-or-gui-tools"><i class="fa fa-check"></i><b>1.1.1</b> Why use R instead of only spreadsheets or GUI tools?</a></li>
 </ul></li>
-<li class="chapter" data-level="1.2" data-path="r-in-bioinformatics-and-biomedical-research.html"><a href="r-in-bioinformatics-and-biomedical-research.html"><i class="fa fa-check"></i><b>1.2</b> R in bioinformatics and biomedical research</a></li>
+<li class="chapter" data-level="1.2" data-path="r-in-bioinformatics-and-biomedical-research.html"><a href="r-in-bioinformatics-and-biomedical-research.html"><i class="fa fa-check"></i><b>1.2</b> R in bioinformatics and biomedical research</a>
+<ul>
+<li class="chapter" data-level="1.2.1" data-path="r-in-bioinformatics-and-biomedical-research.html"><a href="r-in-bioinformatics-and-biomedical-research.html#a-gentle-view-of-the-bioconductor-ecosystem"><i class="fa fa-check"></i><b>1.2.1</b> A gentle view of the Bioconductor ecosystem</a></li>
+<li class="chapter" data-level="1.2.2" data-path="r-in-bioinformatics-and-biomedical-research.html"><a href="r-in-bioinformatics-and-biomedical-research.html#a-typical-r-based-workflow-in-a-biomedical-project"><i class="fa fa-check"></i><b>1.2.2</b> A typical R-based workflow in a biomedical project</a></li>
+</ul></li>
 <li class="chapter" data-level="1.3" data-path="less-about-programming-more-about-data-analysis.html"><a href="less-about-programming-more-about-data-analysis.html"><i class="fa fa-check"></i><b>1.3</b> Less about programming, more about data analysis</a></li>
-<li class="chapter" data-level="1.4" data-path="how-to-use-this-book.html"><a href="how-to-use-this-book.html"><i class="fa fa-check"></i><b>1.4</b> How to use this book</a></li>
+<li class="chapter" data-level="1.4" data-path="what-you-need-and-do-not-need-to-know-in-advance.html"><a href="what-you-need-and-do-not-need-to-know-in-advance.html"><i class="fa fa-check"></i><b>1.4</b> What you need (and do not need) to know in advance</a></li>
+<li class="chapter" data-level="1.5" data-path="how-to-use-this-book.html"><a href="how-to-use-this-book.html"><i class="fa fa-check"></i><b>1.5</b> How to use this book</a></li>
 </ul></li>
 <li class="chapter" data-level="2" data-path="getting-started-with-r-and-rstudio.html"><a href="getting-started-with-r-and-rstudio.html"><i class="fa fa-check"></i><b>2</b> Getting Started with R and RStudio</a>
 <ul>
@@ -261,20 +266,32 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>There are many excellent books that teach R as a general programming language or focus heavily on computer science concepts. This book takes a different approach.</p>
 <p>Our priorities are:</p>
 <ul>
-<li><strong>Clarity</strong>: Use simple language and concrete examples from biomedical research.</li>
-<li><strong>Practicality</strong>: Show tasks you actually need in day-to-day data analysis.</li>
-<li><strong>Reproducibility</strong>: Encourage good habits from the start.</li>
+<li><strong>Clarity</strong>: We use simple language and concrete examples drawn from biomedical research.</li>
+<li><strong>Practicality</strong>: We focus on tasks you are likely to face in everyday analysis work.</li>
+<li><strong>Reproducibility</strong>: We encourage habits that make it easier to rerun and share your work.</li>
 </ul>
-<p>We will explain enough programming concepts so that you understand what your code is doing, but we will not dive deep into things like object-oriented programming, advanced software design patterns, or building complex applications.</p>
-<p>If you can:</p>
+<p>We do introduce enough programming concepts for you to understand what your code is doing: ideas such as “objects”, “functions”, and “data structures”. However, we deliberately spend <strong>less time</strong> on topics such as:</p>
 <ul>
-<li>Load your data into R</li>
-<li>Clean and reshape it</li>
-<li>Join different tables</li>
-<li>Make clear plots</li>
-<li>Run basic analyses and export the results</li>
+<li>Advanced programming patterns or theories.</li>
+<li>Building complex software systems.</li>
+<li>Fine details of how R is implemented internally.</li>
 </ul>
-<p>…then this book has achieved its goal.</p>
+<p>Instead, most of our effort goes into <strong>using R as a practical tool</strong>:</p>
+<ul>
+<li>Getting your data into a clean, analysable form.</li>
+<li>Checking that the numbers make sense.</li>
+<li>Producing clear visual summaries.</li>
+<li>Documenting your steps so that others (including your future self) can follow them.</li>
+</ul>
+<p>If by the end of the book you are able to confidently:</p>
+<ul>
+<li>Load your own data into R.</li>
+<li>Clean and reshape it into useful tables.</li>
+<li>Join different sources of information.</li>
+<li>Produce clear plots that highlight important patterns.</li>
+<li>Run basic analyses and export the results for reports and manuscripts.</li>
+</ul>
+<p>…then this book has achieved its main goal.</p>
 </div>
             </section>
 
@@ -282,7 +299,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
         </div>
       </div>
 <a href="r-in-bioinformatics-and-biomedical-research.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="how-to-use-this-book.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="what-you-need-and-do-not-need-to-know-in-advance.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
