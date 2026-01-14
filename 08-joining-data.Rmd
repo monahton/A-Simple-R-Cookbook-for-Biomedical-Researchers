@@ -1,0 +1,100 @@
+# Joining Data Frames
+
+In biomedical research, data often comes from multiple sources:
+
+- Clinical data collected at the bedside
+- Laboratory assay results
+- Genomic or proteomic measurements
+
+To analyse these together, you need to **join** tables on a common key (e.g. patient ID, sample ID).
+
+The `dplyr` package provides a family of join functions:
+
+- `left_join()`
+- `inner_join()`
+- `right_join()`
+- `full_join()`
+- `semi_join()` and `anti_join()`
+
+We will focus on the most common ones and use simple examples.
+
+Assume we have:
+
+- `clinical` – one row per patient
+- `assay` – one row per sample (linked to patient by `patient_id`)
+
+## left_join(): keep all rows from the left table
+
+`left_join(x, y, by = "key")` joins two tables, keeping all rows from `x` and adding matching columns from `y`.
+
+Example:
+
+```r
+library(dplyr)
+
+combined <- clinical %>%
+  left_join(assay, by = "patient_id")
+```
+
+If a patient is in `clinical` but has no assay data, the new columns from `assay` will be `NA` for that patient.
+
+`left_join()` is often the safest default in biomedical work, where you typically have a master clinical table and optional extra information.
+
+## inner_join(): keep only matches
+
+`inner_join()` keeps only rows with matches in **both** tables.
+
+```r
+overlap <- clinical %>%
+  inner_join(assay, by = "patient_id")
+```
+
+Patients who are missing from either `clinical` or `assay` are dropped.
+
+This is useful when you want to restrict analysis to subjects with complete data in both sources.
+
+## full_join(): keep everything
+
+`full_join()` keeps all rows from both tables, filling missing values with `NA` where necessary.
+
+```r
+full <- clinical %>%
+  full_join(assay, by = "patient_id")
+```
+
+This can be helpful for data auditing (checking which patients appear where), but is less common for final analyses.
+
+## Specifying multiple keys
+
+Sometimes you need to join by more than one variable, for example `patient_id` and `visit`.
+
+```r
+combined <- clinical_long %>%
+  left_join(biomarkers_long, by = c("patient_id", "visit"))
+```
+
+This ensures that you match the right visit for each patient.
+
+## Checking join results
+
+After a join, always check:
+
+- Number of rows: did it increase, decrease, or stay the same?
+- Number of missing values in key columns
+- Whether there were duplicate keys
+
+`dplyr` will warn you if there are many-to-many matches (both tables have duplicates of the key). This is often a sign that you should double-check your assumptions.
+
+Example checks:
+
+```r
+nrow(clinical)
+nrow(assay)
+nrow(combined)
+
+colSums(is.na(combined))
+```
+
+Joining tables correctly is crucial; a wrong join can silently produce incorrect analyses.
+
+In later chapters, we will use joins to combine the clinical and biomarker data from our example dataset.

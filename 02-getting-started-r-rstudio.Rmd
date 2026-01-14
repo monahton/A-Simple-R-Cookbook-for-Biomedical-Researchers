@@ -1,0 +1,139 @@
+# Getting Started with R and RStudio
+
+In this chapter we explain what **R** and **RStudio** are, how they relate to each other, and how to set them up for everyday work.
+
+## R vs RStudio: what is the difference?
+
+- **R** is the engine. It is the language and computation engine that reads your code and does the calculations.
+- **RStudio** is an **integrated development environment (IDE)** that makes R easier and nicer to use. It provides menus, panes, syntax highlighting, and many shortcuts.
+
+You can run R without RStudio (for example, in a plain terminal), but RStudio makes your life much easier, especially when you are starting out.
+
+A rough analogy:
+
+- R is like a powerful microscope.
+- RStudio is like the comfortable lab bench, chair, and light that make using the microscope pleasant and efficient.
+
+## Installing R
+
+1. Go to the Comprehensive R Archive Network (CRAN) website.
+2. Download the installer for your operating system (Windows, macOS, or Linux).
+3. Run the installer and follow the default options.
+
+After installation, you will have an application called **R** (sometimes "R x.y.z" where x.y.z is the version number).
+
+## Installing RStudio
+
+1. Go to the RStudio (Posit) website and download **RStudio Desktop** (the free version is fine).
+2. Install it as you would any other application.
+3. When you open RStudio, it automatically finds your R installation.
+
+## The RStudio layout
+
+When you open RStudio, you usually see four main panes:
+
+1. **Source pane** (top-left): where you write and edit scripts (`.R` files) and notebooks (`.Rmd` files).
+2. **Console pane** (bottom-left): where R actually runs your code and shows results.
+3. **Environment / History pane** (top-right): shows the objects currently in memory and a history of commands.
+4. **Files / Plots / Packages / Help / Viewer pane** (bottom-right): shows files, plots, installed packages, help pages, etc.
+
+You can resize these panes or change their layout in the RStudio options, but the default layout works well for most people.
+
+## The R console
+
+The **console** is where R reads and runs your commands. The prompt usually looks like this:
+
+```r
+>
+```
+
+(Do not type the `>` yourself; R prints it to indicate it is ready for input.)
+
+You can type simple commands into the console and press Enter, for example:
+
+```r
+1 + 1
+```
+
+R will respond with:
+
+```r
+[1] 2
+```
+
+The `[1]` just means "this is the first element of the result". For now, you can ignore it.
+
+The console is useful for quick experiments, but for real work we strongly recommend using **scripts**.
+
+## Scripts and reproducible analysis
+
+An **R script** is a plain text file with extension `.R` that contains sequences of R commands.
+
+Advantages of using scripts:
+
+- You can save your work, run it again later, or share it with collaborators.
+- You can run the entire analysis from top to bottom with a single command.
+- It is easier to debug and to keep track of changes.
+
+To create a new script in RStudio:
+
+1. Click **File → New File → R Script**.
+2. A new tab opens in the Source pane.
+3. Type some R code, for example:
+
+```r
+x <- 1:10
+mean(x)
+```
+
+4. To run a line, place the cursor on that line and press **Cmd+Enter** (macOS) or **Ctrl+Enter** (Windows/Linux). The code runs in the console and the result appears below.
+
+We will use scripts extensively in later chapters.
+
+## Projects in RStudio
+
+RStudio **projects** help you organise your files, data, and scripts for each analysis or paper.
+
+When you create a project, RStudio:
+
+- Sets the working directory to the project folder.
+- Remembers your open files and settings.
+- Helps keep separate analyses from interfering with each other.
+
+To create a project for this book:
+
+1. In RStudio, click **File → New Project…**.
+2. Choose **Existing Directory**.
+3. Browse to the folder `A-Simple-R-Cookbook-for-Biomedical-Researchers`.
+4. Click **Create Project**.
+
+Now, whenever you open the `.Rproj` file in that folder, RStudio will load the project with the book.
+
+## Installing and loading packages
+
+R has a small set of functions built in, but most of the power comes from **packages**. A package is a collection of functions, data, and documentation.
+
+To install a package from CRAN, use `install.packages()` (you only need to do this once per computer):
+
+```r
+install.packages("tidyverse")
+```
+
+To use the package in a session, you need to **load** it with `library()` every time you start R:
+
+```r
+library(tidyverse)
+```
+
+If R says that a package is not installed, double-check the spelling and your internet connection.
+
+## Summary
+
+In this chapter you learned:
+
+- The difference between **R** (the language/engine) and **RStudio** (the user interface).
+- How to install both.
+- How to use the console, scripts, and projects.
+- How to install and load packages.
+
+In the next chapters we will explore what kinds of data R works with and how these are represented in memory.

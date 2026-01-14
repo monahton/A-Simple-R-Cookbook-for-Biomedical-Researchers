@@ -1,0 +1,17 @@
+book_filename: "A-Simple-R-Cookbook-for-Biomedical-Researchers"
+output_dir: "docs"
+language:
+  ui:
+    chapter_name: "Chapter "
+rmd_files:
+  - index.Rmd
+  - 01-introduction-bioinformatics.Rmd
+  - 02-getting-started-r-rstudio.Rmd
+  - 03-working-in-rstudio.Rmd
+  - 04-data-types.Rmd
+  - 05-data-structures.Rmd
+  - 06-importing-and-cleaning-data.Rmd
+  - 07-data-wrangling-dplyr.Rmd
+  - 08-joining-data.Rmd
+  - 09-data-visualisation.Rmd
+  - 10-biomarker-case-study.Rmd

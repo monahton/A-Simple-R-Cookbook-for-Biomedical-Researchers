@@ -1,0 +1,151 @@
+# Data Visualisation with ggplot2
+
+Visualisation is essential for:
+
+- Exploring data quality
+- Detecting patterns and outliers
+- Communicating results
+
+The `ggplot2` package (part of the tidyverse) is a powerful and flexible system for making plots in R.
+
+In this chapter we cover:
+
+- Basic grammar of graphics
+- Scatter plots
+- Boxplots and violin plots
+- Bar plots
+- Faceting (small multiples)
+
+## Basics of ggplot2
+
+First, load the package:\n
+```r
+library(ggplot2)
+```
+
+The basic idea is:
+
+```r
+ggplot(data, aes(x = ..., y = ..., color = ...)) +
+  geom_...( )
+```
+
+Where:
+
+- `data` is a data frame or tibble.
+- `aes()` defines **aesthetics**: how variables map to visual properties.
+- `geom_...` chooses the type of plot (points, lines, bars, etc.).
+
+## Scatter plots
+
+Scatter plots are useful for examining relationships between two continuous variables, e.g. baseline vs follow-up biomarker.
+
+```r
+ggplot(clinical, aes(x = biomarker_baseline, y = biomarker_followup)) +
+  geom_point()
+```
+
+You can colour points by a categorical variable:
+
+```r
+ggplot(clinical, aes(x = biomarker_baseline, y = biomarker_followup, color = treatment)) +
+  geom_point()
+```
+
+Add a diagonal reference line:
+
+```r
+ggplot(clinical, aes(x = biomarker_baseline, y = biomarker_followup)) +
+  geom_point() +
+  geom_abline(slope = 1, intercept = 0, linetype = "dashed", color = "red")
+```
+
+## Boxplots
+
+Boxplots summarise the distribution of a continuous variable across groups.
+
+Example: biomarker change by treatment.
+
+```r
+ggplot(clinical, aes(x = treatment, y = delta_biomarker)) +
+  geom_boxplot()
+```
+
+You can overlay individual points (often with a small random jitter):
+
+```r
+ggplot(clinical, aes(x = treatment, y = delta_biomarker)) +
+  geom_boxplot(outlier.shape = NA) +
+  geom_jitter(width = 0.1, alpha = 0.5)
+```
+
+## Bar plots
+
+Bar plots are useful for counts or proportions.
+
+Example: number of patients by treatment group.
+
+```r
+ggplot(clinical, aes(x = treatment)) +
+  geom_bar()
+```
+
+By default, `geom_bar()` counts rows in each group. You can also summarise yourself and plot pre-computed counts.
+
+## Faceting: small multiples
+
+Faceting creates multiple panels for different levels of a variable.
+
+Example: scatter plots of baseline vs follow-up biomarker, separated by treatment.
+
+```r
+ggplot(clinical, aes(x = biomarker_baseline, y = biomarker_followup)) +
+  geom_point() +
+  facet_wrap(~ treatment)
+```
+
+This helps compare patterns across subgroups.
+
+## Labels and themes
+
+Always label your axes and legends clearly.
+
+```r
+ggplot(clinical, aes(x = biomarker_baseline, y = biomarker_followup, color = treatment)) +
+  geom_point() +
+  labs(
+    x = "Baseline biomarker (ng/mL)",
+    y = "Follow-up biomarker (ng/mL)",
+    color = "Treatment group",
+    title = "Change in biomarker by treatment"
+  )
+```
+
+You can adjust the overall look with themes, e.g.:
+
+```r
+p + theme_minimal()
+```
+
+or
+
+```r
+p + theme_bw()
+```
+
+Where `p` is a plot object created earlier.
+
+## Saving plots
+
+To save a plot to a file, use `ggsave()`.
+
+```r
+p <- ggplot(clinical, aes(x = treatment, y = delta_biomarker)) +
+  geom_boxplot()
+
+ggsave("figures/biomarker_boxplot.png", plot = p, width = 6, height = 4, dpi = 300)
+```
+
+Figures saved this way can be included in manuscripts, presentations, or reports.
+
+In the final chapter we will use these ideas to analyse a small simulated biomedical dataset end-to-end.

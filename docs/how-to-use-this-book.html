@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>1.4 How to use this book | A Simple R Cookbook for Biomedical Researchers</title>
+  <meta name="description" content="1.4 How to use this book | A Simple R Cookbook for Biomedical Researchers" />
+  <meta name="generator" content="bookdown 0.46 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="1.4 How to use this book | A Simple R Cookbook for Biomedical Researchers" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="1.4 How to use this book | A Simple R Cookbook for Biomedical Researchers" />
+  
+  
+  
+
+<meta name="author" content="Monah Abou Alezz" />
+
+
+<meta name="date" content="2026-01-14" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="less-about-programming-more-about-data-analysis.html"/>
+<link rel="next" href="getting-started-with-r-and-rstudio.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a></li>
+<li class="chapter" data-level="1" data-path="introduction-r-for-bioinformatics-and-biomedical-data-analysis.html"><a href="introduction-r-for-bioinformatics-and-biomedical-data-analysis.html"><i class="fa fa-check"></i><b>1</b> Introduction: R for Bioinformatics and Biomedical Data Analysis</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="what-is-r.html"><a href="what-is-r.html"><i class="fa fa-check"></i><b>1.1</b> What is R?</a>
+<ul>
+<li class="chapter" data-level="1.1.1" data-path="what-is-r.html"><a href="what-is-r.html#why-use-r-instead-of-only-spreadsheets-or-gui-tools"><i class="fa fa-check"></i><b>1.1.1</b> Why use R instead of only spreadsheets or GUI tools?</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="r-in-bioinformatics-and-biomedical-research.html"><a href="r-in-bioinformatics-and-biomedical-research.html"><i class="fa fa-check"></i><b>1.2</b> R in bioinformatics and biomedical research</a></li>
+<li class="chapter" data-level="1.3" data-path="less-about-programming-more-about-data-analysis.html"><a href="less-about-programming-more-about-data-analysis.html"><i class="fa fa-check"></i><b>1.3</b> Less about programming, more about data analysis</a></li>
+<li class="chapter" data-level="1.4" data-path="how-to-use-this-book.html"><a href="how-to-use-this-book.html"><i class="fa fa-check"></i><b>1.4</b> How to use this book</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="getting-started-with-r-and-rstudio.html"><a href="getting-started-with-r-and-rstudio.html"><i class="fa fa-check"></i><b>2</b> Getting Started with R and RStudio</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="r-vs-rstudio-what-is-the-difference.html"><a href="r-vs-rstudio-what-is-the-difference.html"><i class="fa fa-check"></i><b>2.1</b> R vs RStudio: what is the difference?</a></li>
+<li class="chapter" data-level="2.2" data-path="installing-r.html"><a href="installing-r.html"><i class="fa fa-check"></i><b>2.2</b> Installing R</a></li>
+<li class="chapter" data-level="2.3" data-path="installing-rstudio.html"><a href="installing-rstudio.html"><i class="fa fa-check"></i><b>2.3</b> Installing RStudio</a></li>
+<li class="chapter" data-level="2.4" data-path="the-rstudio-layout.html"><a href="the-rstudio-layout.html"><i class="fa fa-check"></i><b>2.4</b> The RStudio layout</a></li>
+<li class="chapter" data-level="2.5" data-path="the-r-console.html"><a href="the-r-console.html"><i class="fa fa-check"></i><b>2.5</b> The R console</a></li>
+<li class="chapter" data-level="2.6" data-path="scripts-and-reproducible-analysis.html"><a href="scripts-and-reproducible-analysis.html"><i class="fa fa-check"></i><b>2.6</b> Scripts and reproducible analysis</a></li>
+<li class="chapter" data-level="2.7" data-path="projects-in-rstudio.html"><a href="projects-in-rstudio.html"><i class="fa fa-check"></i><b>2.7</b> Projects in RStudio</a></li>
+<li class="chapter" data-level="2.8" data-path="installing-and-loading-packages.html"><a href="installing-and-loading-packages.html"><i class="fa fa-check"></i><b>2.8</b> Installing and loading packages</a></li>
+<li class="chapter" data-level="2.9" data-path="summary.html"><a href="summary.html"><i class="fa fa-check"></i><b>2.9</b> Summary</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="working-in-rstudio-your-data-analysis-lab-bench.html"><a href="working-in-rstudio-your-data-analysis-lab-bench.html"><i class="fa fa-check"></i><b>3</b> Working in RStudio: Your Data Analysis Lab Bench</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="creating-and-saving-scripts.html"><a href="creating-and-saving-scripts.html"><i class="fa fa-check"></i><b>3.1</b> Creating and saving scripts</a></li>
+<li class="chapter" data-level="3.2" data-path="running-code-from-a-script.html"><a href="running-code-from-a-script.html"><i class="fa fa-check"></i><b>3.2</b> Running code from a script</a></li>
+<li class="chapter" data-level="3.3" data-path="working-directory-and-files.html"><a href="working-directory-and-files.html"><i class="fa fa-check"></i><b>3.3</b> Working directory and files</a></li>
+<li class="chapter" data-level="3.4" data-path="the-environment-pane.html"><a href="the-environment-pane.html"><i class="fa fa-check"></i><b>3.4</b> The Environment pane</a></li>
+<li class="chapter" data-level="3.5" data-path="plots-and-help-panes.html"><a href="plots-and-help-panes.html"><i class="fa fa-check"></i><b>3.5</b> Plots and Help panes</a></li>
+<li class="chapter" data-level="3.6" data-path="commenting-your-code.html"><a href="commenting-your-code.html"><i class="fa fa-check"></i><b>3.6</b> Commenting your code</a></li>
+<li class="chapter" data-level="3.7" data-path="good-habits-from-the-start.html"><a href="good-habits-from-the-start.html"><i class="fa fa-check"></i><b>3.7</b> Good habits from the start</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="basic-data-types-in-r.html"><a href="basic-data-types-in-r.html"><i class="fa fa-check"></i><b>4</b> Basic Data Types in R</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="numeric-values.html"><a href="numeric-values.html"><i class="fa fa-check"></i><b>4.1</b> Numeric values</a></li>
+<li class="chapter" data-level="4.2" data-path="character-strings.html"><a href="character-strings.html"><i class="fa fa-check"></i><b>4.2</b> Character strings</a></li>
+<li class="chapter" data-level="4.3" data-path="logical-values-truefalse.html"><a href="logical-values-truefalse.html"><i class="fa fa-check"></i><b>4.3</b> Logical values (TRUE/FALSE)</a></li>
+<li class="chapter" data-level="4.4" data-path="factors-categorical-variables.html"><a href="factors-categorical-variables.html"><i class="fa fa-check"></i><b>4.4</b> Factors (categorical variables)</a></li>
+<li class="chapter" data-level="4.5" data-path="dates-and-times.html"><a href="dates-and-times.html"><i class="fa fa-check"></i><b>4.5</b> Dates and times</a></li>
+<li class="chapter" data-level="4.6" data-path="missing-values-na.html"><a href="missing-values-na.html"><i class="fa fa-check"></i><b>4.6</b> Missing values: NA</a></li>
+<li class="chapter" data-level="4.7" data-path="inspecting-data-types.html"><a href="inspecting-data-types.html"><i class="fa fa-check"></i><b>4.7</b> Inspecting data types</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="data-structures-in-r.html"><a href="data-structures-in-r.html"><i class="fa fa-check"></i><b>5</b> Data Structures in R</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="vectors.html"><a href="vectors.html"><i class="fa fa-check"></i><b>5.1</b> Vectors</a></li>
+<li class="chapter" data-level="5.2" data-path="matrices.html"><a href="matrices.html"><i class="fa fa-check"></i><b>5.2</b> Matrices</a></li>
+<li class="chapter" data-level="5.3" data-path="lists.html"><a href="lists.html"><i class="fa fa-check"></i><b>5.3</b> Lists</a></li>
+<li class="chapter" data-level="5.4" data-path="data-frames.html"><a href="data-frames.html"><i class="fa fa-check"></i><b>5.4</b> Data frames</a></li>
+<li class="chapter" data-level="5.5" data-path="tibbles-modern-data-frames.html"><a href="tibbles-modern-data-frames.html"><i class="fa fa-check"></i><b>5.5</b> Tibbles (modern data frames)</a></li>
+<li class="chapter" data-level="5.6" data-path="inspecting-data-frames-and-tibbles.html"><a href="inspecting-data-frames-and-tibbles.html"><i class="fa fa-check"></i><b>5.6</b> Inspecting data frames and tibbles</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="importing-processing-and-cleaning-data.html"><a href="importing-processing-and-cleaning-data.html"><i class="fa fa-check"></i><b>6</b> Importing, Processing, and Cleaning Data</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="importing-csv-files.html"><a href="importing-csv-files.html"><i class="fa fa-check"></i><b>6.1</b> Importing CSV files</a></li>
+<li class="chapter" data-level="6.2" data-path="first-look-at-the-data.html"><a href="first-look-at-the-data.html"><i class="fa fa-check"></i><b>6.2</b> First look at the data</a></li>
+<li class="chapter" data-level="6.3" data-path="renaming-columns.html"><a href="renaming-columns.html"><i class="fa fa-check"></i><b>6.3</b> Renaming columns</a></li>
+<li class="chapter" data-level="6.4" data-path="converting-column-types.html"><a href="converting-column-types.html"><i class="fa fa-check"></i><b>6.4</b> Converting column types</a></li>
+<li class="chapter" data-level="6.5" data-path="handling-missing-values.html"><a href="handling-missing-values.html"><i class="fa fa-check"></i><b>6.5</b> Handling missing values</a></li>
+<li class="chapter" data-level="6.6" data-path="creating-new-variables.html"><a href="creating-new-variables.html"><i class="fa fa-check"></i><b>6.6</b> Creating new variables</a></li>
+<li class="chapter" data-level="6.7" data-path="filtering-and-selecting-columns.html"><a href="filtering-and-selecting-columns.html"><i class="fa fa-check"></i><b>6.7</b> Filtering and selecting columns</a></li>
+<li class="chapter" data-level="6.8" data-path="saving-cleaned-data.html"><a href="saving-cleaned-data.html"><i class="fa fa-check"></i><b>6.8</b> Saving cleaned data</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="data-wrangling-with-dplyr.html"><a href="data-wrangling-with-dplyr.html"><i class="fa fa-check"></i><b>7</b> Data Wrangling with dplyr</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="filter-keep-rows.html"><a href="filter-keep-rows.html"><i class="fa fa-check"></i><b>7.1</b> filter(): keep rows</a></li>
+<li class="chapter" data-level="7.2" data-path="select-keep-or-reorder-columns.html"><a href="select-keep-or-reorder-columns.html"><i class="fa fa-check"></i><b>7.2</b> select(): keep or reorder columns</a></li>
+<li class="chapter" data-level="7.3" data-path="mutate-add-or-transform-columns.html"><a href="mutate-add-or-transform-columns.html"><i class="fa fa-check"></i><b>7.3</b> mutate(): add or transform columns</a></li>
+<li class="chapter" data-level="7.4" data-path="arrange-sort-rows.html"><a href="arrange-sort-rows.html"><i class="fa fa-check"></i><b>7.4</b> arrange(): sort rows</a></li>
+<li class="chapter" data-level="7.5" data-path="group_by-and-summarise-grouped-summaries.html"><a href="group_by-and-summarise-grouped-summaries.html"><i class="fa fa-check"></i><b>7.5</b> group_by() and summarise(): grouped summaries</a></li>
+<li class="chapter" data-level="7.6" data-path="the-pipe.html"><a href="the-pipe.html"><i class="fa fa-check"></i><b>7.6</b> The pipe %&gt;%</a></li>
+<li class="chapter" data-level="7.7" data-path="putting-it-together-a-typical-cleaning-pipeline.html"><a href="putting-it-together-a-typical-cleaning-pipeline.html"><i class="fa fa-check"></i><b>7.7</b> Putting it together: a typical cleaning pipeline</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="joining-data-frames.html"><a href="joining-data-frames.html"><i class="fa fa-check"></i><b>8</b> Joining Data Frames</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="left_join-keep-all-rows-from-the-left-table.html"><a href="left_join-keep-all-rows-from-the-left-table.html"><i class="fa fa-check"></i><b>8.1</b> left_join(): keep all rows from the left table</a></li>
+<li class="chapter" data-level="8.2" data-path="inner_join-keep-only-matches.html"><a href="inner_join-keep-only-matches.html"><i class="fa fa-check"></i><b>8.2</b> inner_join(): keep only matches</a></li>
+<li class="chapter" data-level="8.3" data-path="full_join-keep-everything.html"><a href="full_join-keep-everything.html"><i class="fa fa-check"></i><b>8.3</b> full_join(): keep everything</a></li>
+<li class="chapter" data-level="8.4" data-path="specifying-multiple-keys.html"><a href="specifying-multiple-keys.html"><i class="fa fa-check"></i><b>8.4</b> Specifying multiple keys</a></li>
+<li class="chapter" data-level="8.5" data-path="checking-join-results.html"><a href="checking-join-results.html"><i class="fa fa-check"></i><b>8.5</b> Checking join results</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="data-visualisation-with-ggplot2.html"><a href="data-visualisation-with-ggplot2.html"><i class="fa fa-check"></i><b>9</b> Data Visualisation with ggplot2</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="basics-of-ggplot2.html"><a href="basics-of-ggplot2.html"><i class="fa fa-check"></i><b>9.1</b> Basics of ggplot2</a></li>
+<li class="chapter" data-level="9.2" data-path="scatter-plots.html"><a href="scatter-plots.html"><i class="fa fa-check"></i><b>9.2</b> Scatter plots</a></li>
+<li class="chapter" data-level="9.3" data-path="boxplots.html"><a href="boxplots.html"><i class="fa fa-check"></i><b>9.3</b> Boxplots</a></li>
+<li class="chapter" data-level="9.4" data-path="bar-plots.html"><a href="bar-plots.html"><i class="fa fa-check"></i><b>9.4</b> Bar plots</a></li>
+<li class="chapter" data-level="9.5" data-path="faceting-small-multiples.html"><a href="faceting-small-multiples.html"><i class="fa fa-check"></i><b>9.5</b> Faceting: small multiples</a></li>
+<li class="chapter" data-level="9.6" data-path="labels-and-themes.html"><a href="labels-and-themes.html"><i class="fa fa-check"></i><b>9.6</b> Labels and themes</a></li>
+<li class="chapter" data-level="9.7" data-path="saving-plots.html"><a href="saving-plots.html"><i class="fa fa-check"></i><b>9.7</b> Saving plots</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="case-study-analysing-a-biomedical-biomarker-dataset.html"><a href="case-study-analysing-a-biomedical-biomarker-dataset.html"><i class="fa fa-check"></i><b>10</b> Case Study: Analysing a Biomedical Biomarker Dataset</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="loading-the-dataset.html"><a href="loading-the-dataset.html"><i class="fa fa-check"></i><b>10.1</b> Loading the dataset</a></li>
+<li class="chapter" data-level="10.2" data-path="cleaning-and-derived-variables.html"><a href="cleaning-and-derived-variables.html"><i class="fa fa-check"></i><b>10.2</b> Cleaning and derived variables</a></li>
+<li class="chapter" data-level="10.3" data-path="summaries-by-treatment.html"><a href="summaries-by-treatment.html"><i class="fa fa-check"></i><b>10.3</b> Summaries by treatment</a></li>
+<li class="chapter" data-level="10.4" data-path="visualising-biomarker-change.html"><a href="visualising-biomarker-change.html"><i class="fa fa-check"></i><b>10.4</b> Visualising biomarker change</a></li>
+<li class="chapter" data-level="10.5" data-path="visualising-responder-rates.html"><a href="visualising-responder-rates.html"><i class="fa fa-check"></i><b>10.5</b> Visualising responder rates</a></li>
+<li class="chapter" data-level="10.6" data-path="next-steps.html"><a href="next-steps.html"><i class="fa fa-check"></i><b>10.6</b> Next steps</a></li>
+</ul></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">A Simple R Cookbook for Biomedical Researchers</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="how-to-use-this-book" class="section level2 hasAnchor" number="1.4">
+<h2><span class="header-section-number">1.4</span> How to use this book<a href="how-to-use-this-book.html#how-to-use-this-book" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>You can read the chapters in order, or jump directly to topics you need. However, we recommend that beginners at least skim the early chapters about:</p>
+<ul>
+<li>R and RStudio</li>
+<li>Data types and data structures</li>
+</ul>
+<p>Later chapters on data wrangling and visualisation build on those concepts.</p>
+<p>Throughout the book we will:</p>
+<ul>
+<li>Use a consistent coding style.</li>
+<li>Show example code <strong>and</strong> the corresponding output.</li>
+<li>Use a simple, simulated biomedical dataset packaged in <strong>biomedrdata</strong>.</li>
+</ul>
+<p>If something is confusing, do not worry—this is normal. Take your time, run the code yourself, and try small variations. Learning R is a bit like learning to pipette: at first it feels awkward, but with practice it becomes second nature.</p>
+
+</div>
+<!-- </div> -->
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="less-about-programming-more-about-data-analysis.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="getting-started-with-r-and-rstudio.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+  "sharing": {
+    "github": false,
+    "facebook": true,
+    "twitter": true,
+    "linkedin": false,
+    "weibo": false,
+    "instapaper": false,
+    "vk": false,
+    "whatsapp": false,
+    "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+  },
+  "fontsettings": {
+    "theme": "white",
+    "family": "sans",
+    "size": 2
+  },
+  "edit": {
+    "link": null,
+    "text": null
+  },
+  "history": {
+    "link": null,
+    "text": null
+  },
+  "view": {
+    "link": null,
+    "text": null
+  },
+  "download": null,
+  "search": {
+    "engine": "fuse",
+    "options": null
+  },
+  "toc": {
+    "collapse": "subsection",
+    "depth": 2
+  }
+});
+});
+</script>
+
+</body>
+
+</html>

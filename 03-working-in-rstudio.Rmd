@@ -1,0 +1,126 @@
+# Working in RStudio: Your Data Analysis Lab Bench
+
+Now that you know what R and RStudio are, let us look at how to use RStudio effectively for day-to-day data analysis.
+
+## Creating and saving scripts
+
+Scripts are where your analyses live. Get into the habit of **always** working from a script, not only from the console.
+
+To create a new script:
+
+1. **File → New File → R Script**.
+2. Save it immediately: **File → Save** (or Cmd+S / Ctrl+S).
+3. Choose a meaningful name, for example `01_import_data.R` or `qc_experiment1.R`.
+
+Using numbered prefixes (01, 02, 03, …) keeps related scripts ordered.
+
+## Running code from a script
+
+In the script editor:
+
+- **Run current line:** place cursor on a line and press Cmd+Enter / Ctrl+Enter.
+- **Run selection:** select several lines and press the same shortcut.
+- **Run all:** select all (Cmd+A / Ctrl+A) and then run.
+
+As you run code:
+
+- Output appears in the **console**.
+- Objects you create (data frames, vectors, models) appear in the **Environment** pane.
+
+If a command fails, R usually prints an informative error message in red. Do not panic—read it slowly. Often it tells you exactly what went wrong (for example, a misspelled column name).
+
+## Working directory and files
+
+The **working directory** is the folder that R uses as its reference point when reading or writing files.
+
+You can see the current working directory with:
+
+```r
+getwd()
+```
+
+In a project, the working directory should be the project folder. This is one of the main reasons we use projects.
+
+Instead of using full paths like:
+
+```r
+"C:/Users/You/Desktop/Experiment1/data.csv"
+```
+
+you can use relative paths from the project root, for example:
+
+```r
+"data/experiment1.csv"
+```
+
+This makes your code more portable and easier to share.
+
+## The Environment pane
+
+The **Environment** pane (top-right by default) lists the objects currently in memory:
+
+- Vectors, data frames, lists, models, etc.
+
+You can click on a data frame to view it in a spreadsheet-like viewer. This is very handy for quickly checking that your data imported correctly.
+
+However, try not to rely too heavily on the mouse. It is good to learn code-based checks, for example:
+
+```r
+head(my_data)
+str(my_data)
+summary(my_data)
+```
+
+These commands also show up in your script, making your checks reproducible.
+
+## Plots and Help panes
+
+The **Plots** tab shows figures produced by R. You can:
+
+- Navigate between previous plots.
+- Export plots to files (PNG, PDF) using the **Export** button.
+
+The **Help** tab displays documentation. To open help for a function, use:
+
+```r
+?mean
+help("mean")
+```
+
+or type the function name in the search bar of the Help pane.
+
+Documentation can be dense, but scrolling to the **Examples** section is often helpful.
+
+## Commenting your code
+
+Comments are text in your script that R ignores. They start with `#`.
+
+Use comments to:
+
+- Explain what a block of code is doing.
+- Mark sections of your analysis.
+- Leave notes to your future self.
+
+Example:
+
+```r
+# Import clinical data and basic QC
+clinical <- read.csv("data/clinical.csv")
+
+# Check for missing values in key variables
+summary(clinical$age)
+summary(clinical$outcome)
+```
+
+Well-commented code is easier to understand and debug. Remember: your most important collaborator is *future you*.
+
+## Good habits from the start
+
+A few small habits make your life much easier:
+
+- **Save** your script frequently.
+- **Run** your script from the top regularly to ensure everything still works.
+- Keep raw data **read-only** and perform cleaning steps in code.
+- Use meaningful, consistent object names (for example `patients`, `rna_counts`, `qc_results`).
+
+In later chapters we will apply these habits to specific tasks such as data import, cleaning, and visualisation.

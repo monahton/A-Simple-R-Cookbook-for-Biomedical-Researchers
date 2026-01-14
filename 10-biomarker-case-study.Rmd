@@ -1,0 +1,157 @@
+# Case Study: Analysing a Biomedical Biomarker Dataset
+
+In this chapter we bring everything together using a small simulated clinical biomarker dataset from the **biomedrdata** package.
+
+The dataset, `clinical_biomarkers`, contains:
+
+- One row per patient.
+- Baseline and follow-up biomarker measurements.
+- Treatment assignment.
+- Basic clinical variables (age, sex, outcome).
+
+Our goals:
+
+- Import and inspect the data.
+- Clean and transform variables.
+- Summarise and visualise biomarker changes by treatment group.
+
+## Loading the dataset
+
+First, install and load the package once you have built it:
+
+```r
+# install.packages("devtools") # if needed
+# devtools::install("../biomedrdata")
+
+library(biomedrdata)
+data("clinical_biomarkers")
+
+clinical <- clinical_biomarkers
+```
+
+Take a first look:
+
+```r
+head(clinical)
+str(clinical)
+summary(clinical)
+```
+
+## Cleaning and derived variables
+
+We create a change score for the biomarker and a simple responder flag.
+
+```r
+library(dplyr)
+
+clinical <- clinical %>%
+  mutate(
+    delta_biomarker = biomarker_followup - biomarker_baseline,
+    pct_change = 100 * delta_biomarker / biomarker_baseline,
+    responder = pct_change <= -50
+  )
+```
+
+Check the distribution of changes:
+
+```r
+summary(clinical$delta_biomarker)
+summary(clinical$pct_change)
+```
+
+## Summaries by treatment
+
+Compute summaries by treatment group:
+
+```r
+summary_by_tx <- clinical %>%
+  group_by(treatment) %>%
+  summarise(
+    n = n(),
+    mean_age = mean(age, na.rm = TRUE),
+    mean_baseline = mean(biomarker_baseline, na.rm = TRUE),
+    mean_followup = mean(biomarker_followup, na.rm = TRUE),
+    mean_delta = mean(delta_biomarker, na.rm = TRUE),
+    responders = sum(responder, na.rm = TRUE),
+    responder_rate = responders / n
+  )
+
+summary_by_tx
+```
+
+Interpretation questions you might ask:
+
+- Does the treatment group show a larger average decrease in biomarker?
+- What proportion of patients in each group are responders?
+
+## Visualising biomarker change
+
+Use boxplots to compare `delta_biomarker` across treatments.
+
+```r
+library(ggplot2)
+
+ggplot(clinical, aes(x = treatment, y = delta_biomarker)) +
+  geom_boxplot(outlier.shape = NA) +
+  geom_jitter(width = 0.1, alpha = 0.4) +
+  labs(
+    x = "Treatment group",
+    y = "Change in biomarker (follow-up - baseline)",
+    title = "Biomarker change by treatment"
+  ) +
+  theme_minimal()
+```
+
+You can also look at percentage change:
+
+```r
+ggplot(clinical, aes(x = treatment, y = pct_change)) +
+  geom_boxplot(outlier.shape = NA) +
+  geom_jitter(width = 0.1, alpha = 0.4) +
+  labs(
+    x = "Treatment group",
+    y = "Percentage change in biomarker",
+    title = "Percentage change by treatment"
+  ) +
+  theme_minimal()
+```
+
+## Visualising responder rates
+
+Create a simple bar plot of responder rates:
+
+```r
+responder_summary <- clinical %>%
+  group_by(treatment) %>%
+  summarise(responder_rate = mean(responder, na.rm = TRUE))
+
+responder_summary
+
+ggplot(responder_summary, aes(x = treatment, y = responder_rate)) +
+  geom_col() +
+  scale_y_continuous(labels = scales::percent_format()) +
+  labs(
+    x = "Treatment group",
+    y = "Responder rate",
+    title = "Responder rates by treatment"
+  ) +
+  theme_minimal()
+```
+
+## Next steps
+
+This case study illustrated a basic but realistic workflow:
+
+1. Load a biomedical dataset.
+2. Inspect and clean the data.
+3. Create derived variables.
+4. Summarise results by group.
+5. Visualise distributions and key outcomes.
+
+You can adapt this pattern to your own datasets by:
+
+- Changing variable names.
+- Adjusting filters and derived variables.
+- Choosing plots that match your endpoints.
+
+As you become more comfortable, you can extend this with statistical modelling, more complex experimental designs, and domain-specific methods (e.g. survival analysis, mixed models, omics pipelines), many of which are available as R packages.

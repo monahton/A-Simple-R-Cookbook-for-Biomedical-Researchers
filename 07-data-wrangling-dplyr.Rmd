@@ -1,0 +1,177 @@
+# Data Wrangling with dplyr
+
+"Data wrangling" means transforming raw data into a clean, analysis-ready form.
+
+The `dplyr` package (part of the **tidyverse**) provides a consistent set of verbs for common operations:
+
+- `filter()` – keep rows
+- `select()` – keep columns
+- `mutate()` – add or transform columns
+- `arrange()` – sort rows
+- `summarise()` – compute summary statistics
+- `group_by()` – define groups of rows for grouped operations
+
+We will introduce each with simple biomedical-flavoured examples.
+
+First, load the package:
+
+```r
+library(dplyr)
+```
+
+Assume we have a `clinical` data frame with columns:
+
+- `patient_id`
+- `age`
+- `sex`
+- `treatment`
+- `outcome`
+- `biomarker_baseline`
+- `biomarker_followup`
+
+## filter(): keep rows
+
+`filter()` keeps rows that meet certain conditions.
+
+Example: keep only treated patients older than 50.
+
+```r
+clinical_treated50 <- clinical %>%
+  filter(treatment == "drug", age > 50)
+```
+
+You can use logical operators:
+
+- `==` equal to
+- `!=` not equal to
+- `>` greater than
+- `<` less than
+- `>=`, `<=`
+- `&` and
+- `|` or
+
+## select(): keep or reorder columns
+
+`select()` chooses a subset of columns.
+
+```r
+clinical_small <- clinical %>%
+  select(patient_id, age, treatment, outcome)
+```
+
+You can also rename columns while selecting:
+
+```r
+clinical_renamed <- clinical %>%
+  select(id = patient_id, tx = treatment, everything())
+```
+
+## mutate(): add or transform columns
+
+`mutate()` creates new columns or modifies existing ones.
+
+Example: compute change in biomarker and percentage change.
+
+```r
+clinical <- clinical %>%
+  mutate(
+    delta_biomarker = biomarker_followup - biomarker_baseline,
+    pct_change = 100 * delta_biomarker / biomarker_baseline
+  )
+```
+
+You can create logical flags:
+
+```r
+clinical <- clinical %>%
+  mutate(
+    responder = pct_change <= -50
+  )
+```
+
+## arrange(): sort rows
+
+`arrange()` orders rows by one or more columns.
+
+```r
+clinical_sorted <- clinical %>%
+  arrange(desc(pct_change))
+```
+
+This sorts patients by percentage change, from largest to smallest.
+
+## group_by() and summarise(): grouped summaries
+
+One of the most powerful patterns is **grouped summarisation**.
+
+Example: mean biomarker change by treatment group.
+
+```r
+summary_by_treatment <- clinical %>%
+  group_by(treatment) %>%
+  summarise(
+    n = n(),
+    mean_delta = mean(delta_biomarker, na.rm = TRUE),
+    sd_delta = sd(delta_biomarker, na.rm = TRUE)
+  )
+```
+
+Here:
+
+- `group_by(treatment)` tells `dplyr` to form groups of rows by treatment.
+- `summarise()` computes one row per group.
+
+You can group by multiple variables, e.g. `group_by(treatment, sex)`.
+
+## The pipe %>%
+
+You may have noticed the `%>%` symbol (the **pipe**).
+
+`x %>% f()` is a readable way of writing `f(x)`. It passes the object on the left as the first argument to the function on the right.
+
+Instead of nesting function calls like this:
+
+```r
+summarise(group_by(clinical, treatment), mean_delta = mean(delta_biomarker))
+```
+
+we can write:
+
+```r
+clinical %>%
+  group_by(treatment) %>%
+  summarise(mean_delta = mean(delta_biomarker))
+```
+
+This flows from top to bottom, making complex transformations much easier to read.
+
+(Modern R also has a base pipe `|>`; both are acceptable. This book uses `%>%` because it is common in the tidyverse.)
+
+## Putting it together: a typical cleaning pipeline
+
+Here is an example pipeline that:
+
+1. Filters to treated patients.
+2. Creates derived variables.
+3. Keeps only key columns.
+4. Summarises by outcome.
+
+```r
+clinical_summary <- clinical %>%
+  filter(treatment == "drug") %>%
+  mutate(
+    delta_biomarker = biomarker_followup - biomarker_baseline,
+    responder = delta_biomarker <= -0.5
+  ) %>%
+  select(patient_id, age, sex, responder, delta_biomarker) %>%
+  group_by(responder) %>%
+  summarise(
+    n = n(),
+    mean_age = mean(age, na.rm = TRUE),
+    mean_delta = mean(delta_biomarker, na.rm = TRUE)
+  )
+```
+
+As you read and write such pipelines, imagine each step as a small lab protocol step: filter samples, annotate, measure, summarise.
+
+In the next chapter we will see how to **join** multiple data frames (for example, clinical information and assay results) using similar ideas.

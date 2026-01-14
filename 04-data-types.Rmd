@@ -1,0 +1,184 @@
+# Basic Data Types in R
+
+To work effectively in R, you need to understand the basic **data types**. These are the kinds of values R can store.
+
+In biomedical data analysis you will most often encounter:
+
+- Numeric values (e.g. concentrations, counts, ages)
+- Character strings (e.g. sample IDs, gene symbols)
+- Logical values (TRUE/FALSE)
+- Factors (categorical variables, e.g. treatment group)
+- Dates and times (e.g. collection dates)
+
+We will look at each in turn, with simple examples.
+
+## Numeric values
+
+Numeric values represent numbers. In R, most numbers you create are of type `numeric`.
+
+Examples:
+
+```r
+3.14
+42
+-0.01
+```
+
+You can assign numbers to objects using `<-`:
+
+```r
+age <- 35
+concentration <- 2.5
+```
+
+You can perform arithmetic:
+
+```r
+age + 5      # 40
+concentration * 2  # 5
+```
+
+R can also represent very large or very small numbers using scientific notation, e.g. `1e6` for one million.
+
+## Character strings
+
+Character strings are pieces of text, surrounded by quotes `""` or `''`.
+
+Examples:
+
+```r
+sample_id <- "S1"
+gene <- "TP53"
+cell_line <- "HeLa"
+```
+
+Character strings are used for:
+
+- IDs
+- Gene names
+- Free-text labels
+
+You can combine strings with `paste()` or `paste0()`:
+
+```r
+paste("Patient", 1:3)
+# "Patient 1" "Patient 2" "Patient 3"
+```
+
+## Logical values (TRUE/FALSE)
+
+Logical values represent truth: `TRUE` or `FALSE`.
+
+They are extremely important in data analysis because they allow you to **filter** and **subset** data.
+
+Examples:
+
+```r
+passed_qc <- TRUE
+is_treated <- c(TRUE, FALSE, TRUE)
+```
+
+Logical values often come from comparisons:
+
+```r
+age <- c(30, 45, 60)
+age > 40
+# FALSE  TRUE  TRUE
+```
+
+You can use logical vectors to select rows from a data frame, as we will see later.
+
+## Factors (categorical variables)
+
+A **factor** is R's way of representing categorical data: variables that take on a limited number of levels, such as:
+
+- Treatment group: `control`, `drugA`, `drugB`
+- Sex: `male`, `female` (or better yet, a more inclusive coding in modern datasets)
+- Stage: `I`, `II`, `III`, `IV`
+
+You can create a factor with `factor()`:
+
+```r
+group <- factor(c("control", "drug", "control", "drug"))
+```
+
+Factors remember the set of allowed values (**levels**). This is useful for:
+
+- Plotting (consistent order of groups)
+- Modelling (treating groups correctly in regression)
+
+You can check the levels with:
+
+```r
+levels(group)
+```
+
+If you convert character variables to factors too early, they can be slightly annoying to work with. A common modern approach is to keep categorical variables as characters until you need factors for modelling or plotting.
+
+## Dates and times
+
+Dates and times are extremely common in clinical and experimental data.
+
+R has special classes for dates (`Date`) and date-times (`POSIXct` / `POSIXlt`). You can create a date with `as.Date()`:
+
+```r
+visit_date <- as.Date("2024-03-01")
+```
+
+Internally, dates are stored as the number of days since 1970-01-01, but you usually do not need to worry about that.
+
+For more complex date-time handling (time zones, intervals, etc.), the `lubridate` package is very helpful.
+
+## Missing values: NA
+
+Real-world data is messy. Subjects drop out, experiments fail, values are not recorded. In R, missing values are represented as **`NA`**.
+
+Example:
+
+```r
+age <- c(34, NA, 52)
+```
+
+Important: many functions treat `NA` specially. For instance:
+
+```r
+mean(age)
+# NA
+
+mean(age, na.rm = TRUE)
+# 43
+```
+
+The argument `na.rm = TRUE` tells R to ignore missing values when computing the mean.
+
+You can test for missingness with `is.na()`:
+
+```r
+is.na(age)
+# FALSE  TRUE FALSE
+```
+
+Handling missing data correctly is crucial in biomedical research. We will revisit this topic in data cleaning and wrangling chapters.
+
+## Inspecting data types
+
+To check the type of an object, you can use:
+
+- `class(x)` – the high-level class
+- `typeof(x)` – the low-level internal type (often less important for beginners)
+
+Example:
+
+```r
+x <- 1:5
+class(x)
+# "integer"
+
+name <- "Alice"
+class(name)
+# "character"
+```
+
+In data frames, different columns can have different types. Always check that the types make sense after importing data.
+
+In the next chapter we will see how these basic types are combined into larger **data structures** such as vectors, matrices, and data frames.

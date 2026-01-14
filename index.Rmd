@@ -1,0 +1,47 @@
+---
+title: "A Simple R Cookbook for Biomedical Researchers"
+author: "Monah Abou Alezz"
+date: "`r Sys.Date()`"
+site: bookdown::bookdown_site
+documentclass: book
+output:
+  bookdown::gitbook:
+    css: style.css
+    split_by: section
+---
+
+# Preface {-}
+
+Welcome to **A Simple R Cookbook for Biomedical Researchers**.
+
+This book is written for wet lab scientists, clinicians, and other biomedical researchers who want to analyse their own data in R without becoming full-time programmers.
+
+We will focus on **data analysis workflows** rather than deep computer science. You will learn enough R to be dangerous in the good sense: able to clean, explore, visualise, and model your data, while understanding what you are doing and why.
+
+Throughout the book:
+
+- We assume you have basic familiarity with experimental design and statistics (e.g. p-values, means, standard deviation), but we explain concepts when we use them.
+- We avoid jargon as much as possible and define it when we cannot.
+- We show complete examples that you can copy, paste, and adapt to your own projects.
+
+The examples are inspired by typical biomedical datasets: gene expression, clinical measurements, and simple experimental readouts. We will use a small, simulated biomedical dataset packaged in an R package called **biomedrdata** that you can install and load.
+
+What you will learn:
+
+- How to work comfortably in **R** and **RStudio**.
+- The main **data types** and **data structures** in R that appear all the time in analysis scripts.
+- How to **import, clean, and wrangle** biomedical data into analysis-ready form.
+- How to **join** multiple tables (for example, clinical data + assay data).
+- How to **visualise** your data to check quality and communicate results.
+- How to apply these skills to a realistic biomedical dataset.
+
+What you will *not* learn in depth:
+
+- General-purpose software engineering, advanced programming paradigms, or how to build complex R packages from scratch.
+- The full mathematical theory behind all statistical methods.
+
+Those topics are important, but not necessary for you to become effective at analysing your own data.
+
+If you can run PCRs, Western blots, or cell culture experiments, you can absolutely learn to use R. We will go step by step, with many examples and explanations. Occasionally, we might even make a light joke to keep things human, but we will keep the overall tone professional and focused.
+
+Let us begin.

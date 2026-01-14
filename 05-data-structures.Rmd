@@ -1,0 +1,164 @@
+# Data Structures in R
+
+Data types (numeric, character, etc.) are the building blocks. **Data structures** are how R organises multiple values together.
+
+The most important data structures for data analysis are:
+
+- Vectors
+- Matrices
+- Lists
+- Data frames and tibbles
+
+## Vectors
+
+A **vector** is a one-dimensional sequence of values of the same basic type.
+
+Examples:
+
+```r
+ages <- c(34, 27, 45)
+
+sample_ids <- c("S1", "S2", "S3")
+
+is_treated <- c(TRUE, FALSE, TRUE)
+```
+
+You can access elements with square brackets:
+
+```r
+ages[1]   # 34
+ages[2:3] # 27 and 45
+```
+
+Many functions in R are **vectorised**: they operate on entire vectors at once.
+
+```r
+ages + 1
+# 35 28 46
+```
+
+## Matrices
+
+A **matrix** is a two-dimensional structure (rows and columns) where all elements have the same type (usually numeric).
+
+Matrices are common in high-throughput assays, e.g. gene expression counts (genes × samples).
+
+Example:
+
+```r
+m <- matrix(1:6, nrow = 2, ncol = 3)
+```
+
+You can index a matrix with two indices: `m[row, column]`.
+
+However, in modern R data analysis we often prefer **data frames** or **tibbles** for most tasks, because they handle mixed types better (for example, numeric measurements and character sample IDs in the same object).
+
+## Lists
+
+A **list** can contain elements of different types and structures.
+
+Example:
+
+```r
+patient <- list(
+  id = "P001",
+  age = 54,
+  biomarkers = c(IL6 = 2.3, CRP = 5.1),
+  notes = "Baseline sample before treatment"
+)
+```
+
+Lists are very flexible and are used to store complex results:
+
+- Model fits
+- Results from bioinformatics pipelines
+- Nested experimental structures
+
+You can access elements with `$` or by index:
+
+```r
+patient$age
+patient[["biomarkers"]]
+```
+
+As a wet lab biologist, you will mainly interact with lists when working with outputs from packages; you rarely need to construct very complex lists yourself.
+
+## Data frames
+
+A **data frame** is the workhorse of data analysis in R. It represents tabular data (like a spreadsheet) where:
+
+- Each **column** is a vector of the same length.
+- Columns can have different types (numeric, character, factor, etc.).
+- Each **row** usually represents one observation (e.g. one patient, one sample).
+
+You can create a simple data frame with `data.frame()`:
+
+```r
+clinical <- data.frame(
+  patient_id = c("P001", "P002", "P003"),
+  age = c(54, 60, 47),
+  treatment = c("control", "drug", "drug"),
+  stringsAsFactors = FALSE
+)
+```
+
+(Setting `stringsAsFactors = FALSE` avoids automatic conversion of characters to factors in older versions of R.)
+
+You can access columns with `$`:
+
+```r
+clinical$age
+```
+
+You can also access rows and columns with `[row, column]` notation:
+
+```r
+clinical[1, ]   # first row
+clinical[, 2]   # second column
+```
+
+We will use data frames throughout the book for clinical data, assay results, and derived summaries.
+
+## Tibbles (modern data frames)
+
+The **tibble** is a modern reimagining of the data frame provided by the `tibble` / `tidyverse` packages.
+
+Tibbles:
+
+- Print more nicely (showing only the first rows and columns).
+- Do not convert strings to factors automatically.
+- Are generally safer and more predictable.
+
+You can create a tibble with `tibble::tibble()`:
+
+```r
+library(tibble)
+
+clinical_tbl <- tibble(
+  patient_id = c("P001", "P002", "P003"),
+  age = c(54, 60, 47),
+  treatment = c("control", "drug", "drug")
+)
+```
+
+In this book we will often use tibbles, but the concepts apply equally to base R data frames.
+
+## Inspecting data frames and tibbles
+
+Useful functions to inspect data frames and tibbles include:
+
+- `head(x)` – first few rows
+- `dim(x)` – number of rows and columns
+- `names(x)` – column names
+- `str(x)` – structure and types
+
+Examples:
+
+```r
+head(clinical_tbl)
+str(clinical_tbl)
+```
+
+These give you a quick overview of what you are working with.
+
+In the next chapters, we will learn how to **import**, **clean**, and **transform** these data structures for analysis.

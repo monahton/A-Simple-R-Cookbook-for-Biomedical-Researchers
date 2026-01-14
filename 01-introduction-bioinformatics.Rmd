@@ -1,0 +1,92 @@
+# Introduction: R for Bioinformatics and Biomedical Data Analysis
+
+R is a free, open-source language designed for **data analysis and statistics**. It has become a standard tool in many areas of science, including bioinformatics, genomics, and clinical research.
+
+In this chapter we will:
+
+- Explain what R is and why it is useful for biomedical researchers.
+- Discuss how R is used in bioinformatics.
+- Clarify the goals and style of this book.
+
+## What is R?
+
+R is both:
+
+1. A **programming language**, and
+2. An **environment for data analysis**.
+
+You can think of R as a very smart calculator that understands tables of data, can draw figures, and can run statistical tests. Unlike spreadsheet software, R keeps a record of exactly what you did in code, which makes your work **reproducible** and **transparent**.
+
+### Why use R instead of only spreadsheets or GUI tools?
+
+Many biomedical researchers start with tools like Excel, GraphPad Prism, or instrument vendor software. These tools are useful, but they have limitations:
+
+- Repeating the same analysis for many datasets becomes tedious.
+- Manual steps are easy to forget or mis-click, which can lead to subtle errors.
+- Collaboration is harder because others cannot easily see every step you took.
+
+R addresses these issues because:
+
+- Your analysis is written as **code**, so it can be saved, shared, and re-run.
+- You can apply the same code to new data with minimal changes.
+- You have access to thousands of **packages** contributed by other scientists.
+
+## R in bioinformatics and biomedical research
+
+R is widely used in:
+
+- **Transcriptomics** (microarrays, RNA-seq, single-cell RNA-seq)
+- **Genomics and variant analysis**
+- **Proteomics and metabolomics**
+- **Flow cytometry and imaging data analysis**
+- **Clinical data analysis and epidemiology**
+
+The Bioconductor project (a large collection of R packages for bioinformatics) has made R particularly strong for high-throughput data.
+
+However, in this book we do **not** assume you are doing advanced omics analysis from day one. Instead, we focus on the **core skills** that apply to almost any biomedical dataset:
+
+- Reading data into R
+- Cleaning and transforming variables
+- Combining multiple tables
+- Summarising and visualising results
+
+Once you are comfortable with those foundations, you will be able to pick up more specialised tools (for RNA-seq, proteomics, etc.) much more easily.
+
+## Less about programming, more about data analysis
+
+There are many excellent books that teach R as a general programming language or focus heavily on computer science concepts. This book takes a different approach.
+
+Our priorities are:
+
+- **Clarity**: Use simple language and concrete examples from biomedical research.
+- **Practicality**: Show tasks you actually need in day-to-day data analysis.
+- **Reproducibility**: Encourage good habits from the start.
+
+We will explain enough programming concepts so that you understand what your code is doing, but we will not dive deep into things like object-oriented programming, advanced software design patterns, or building complex applications.
+
+If you can:
+
+- Load your data into R
+- Clean and reshape it
+- Join different tables
+- Make clear plots
+- Run basic analyses and export the results
+
+…then this book has achieved its goal.
+
+## How to use this book
+
+You can read the chapters in order, or jump directly to topics you need. However, we recommend that beginners at least skim the early chapters about:
+
+- R and RStudio
+- Data types and data structures
+
+Later chapters on data wrangling and visualisation build on those concepts.
+
+Throughout the book we will:
+
+- Use a consistent coding style.
+- Show example code **and** the corresponding output.
+- Use a simple, simulated biomedical dataset packaged in **biomedrdata**.
+
+If something is confusing, do not worry—this is normal. Take your time, run the code yourself, and try small variations. Learning R is a bit like learning to pipette: at first it feels awkward, but with practice it becomes second nature.

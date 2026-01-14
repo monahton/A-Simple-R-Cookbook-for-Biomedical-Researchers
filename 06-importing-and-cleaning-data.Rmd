@@ -1,0 +1,177 @@
+# Importing, Processing, and Cleaning Data
+
+Most real-world biomedical data starts life as:
+
+- CSV files exported from instruments or LIMS
+- Excel spreadsheets
+- Text files
+
+Before you can analyse the data, you need to **import** it into R and often **clean** it.
+
+In this chapter we will:
+
+- Import data from CSV files.
+- Take a first look at the data.
+- Fix common problems (column types, missing values, inconsistent labels).
+
+We will use functions from base R and the `readr` / `tidyverse` packages.
+
+## Importing CSV files
+
+CSV (comma-separated values) files are a common, simple format for tabular data.
+
+Using base R:
+
+```r
+clinical <- read.csv("data/clinical.csv", stringsAsFactors = FALSE)
+```
+
+Using `readr` (recommended for larger files):
+
+```r
+library(readr)
+
+clinical <- read_csv("data/clinical.csv")
+```
+
+`read_csv()` prints a summary of the columns and their guessed types, which is very helpful for checking that R understood your data correctly.
+
+## First look at the data
+
+Right after importing, inspect the data:
+
+```r
+head(clinical)
+str(clinical)
+summary(clinical)
+```
+
+Questions to ask yourself:
+
+- Do the column names make sense?
+- Are numeric columns really numeric (not accidentally read as character)?
+- Are categorical columns (like treatment group) encoded consistently?
+- How many missing values do you see?
+
+If something looks wrong, it is usually easier to fix it **early**.
+
+## Renaming columns
+
+Sometimes column names are long or contain spaces or odd characters.
+
+You can rename columns in several ways. With `dplyr::rename()`:
+
+```r
+library(dplyr)
+
+clinical <- clinical %>%
+  rename(
+    patient_id = PATIENT_ID,
+    treatment = TreatmentGroup,
+    age = AgeYears
+  )
+```
+
+This creates shorter, more consistent names.
+
+## Converting column types
+
+If a column was imported with the wrong type, you can convert it.
+
+Examples:
+
+```r
+# Convert character to numeric
+clinical$age <- as.numeric(clinical$age)
+
+# Convert numeric codes to factor with labels
+clinical$stage <- factor(clinical$stage_code,
+                         levels = c(1, 2, 3, 4),
+                         labels = c("I", "II", "III", "IV"))
+
+# Convert date strings to Date
+clinical$visit_date <- as.Date(clinical$visit_date)
+```
+
+Always re-check with `str()` after conversions.
+
+## Handling missing values
+
+Missing values (`NA`) are inevitable. Important steps:
+
+- Identify which variables have missing values.
+- Decide whether to drop rows, impute values, or keep them explicit.
+
+To count missing values per column:
+
+```r
+colSums(is.na(clinical))
+```
+
+To remove rows with missing values in a particular column:
+
+```r
+clinical_complete <- clinical %>%
+  filter(!is.na(age))
+```
+
+The appropriate strategy depends on your study design and analysis goals. The main point here is to be **aware** of missing data and handle it deliberately, not by accident.
+
+## Creating new variables
+
+Often you need to create derived variables, such as BMI, response status, or log-transformed measurements.
+
+With `dplyr::mutate()`:
+
+```r
+clinical <- clinical %>%
+  mutate(
+    bmi = weight_kg / (height_m^2),
+    responder = if_else(delta_biomarker < -0.5, "responder", "non-responder")
+  )
+```
+
+Creating clear, well-named variables makes your later analysis and plotting much easier.
+
+## Filtering and selecting columns
+
+Two very common cleaning operations are:
+
+- **Filtering rows** (keeping a subset of patients or samples).
+- **Selecting columns** (keeping only the variables you need).
+
+Examples with `dplyr`:
+
+```r
+# Keep only treated patients
+clinical_treated <- clinical %>%
+  filter(treatment == "drug")
+
+# Keep only key columns
+clinical_small <- clinical %>%
+  select(patient_id, age, treatment, outcome)
+```
+
+We will cover these verbs in more depth in the chapter on data wrangling.
+
+## Saving cleaned data
+
+Once you have cleaned your data, it is often helpful to save a cleaned version for later use.
+
+```r
+write_csv(clinical, "data/clinical_clean.csv")
+```
+
+or as an R-specific binary file (smaller and faster to load):
+
+```r
+saveRDS(clinical, file = "data/clinical_clean.rds")
+```
+
+You can later load it with:
+
+```r
+clinical <- readRDS("data/clinical_clean.rds")
+```
+
+In the next chapter we will systematically learn the main **data wrangling verbs** that make these kinds of operations easier and more consistent.
