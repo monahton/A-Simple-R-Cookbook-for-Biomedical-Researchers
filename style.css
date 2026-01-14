@@ -10,3 +10,33 @@ pre {
   background-color: #f8f8f8;
   padding: 0.5em;
 }
+
+/* Two-column layout for the preface hero section */
+.preface-hero {
+  display: flex;
+  flex-wrap: wrap;           /* stack nicely on narrow screens */
+  gap: 2rem;
+  align-items: flex-start;
+  margin-bottom: 2rem;
+}
+
+/* Text column on the left */
+.preface-text {
+  flex: 1 1 55%;             /* prefer ~55% width */
+  min-width: 260px;
+}
+
+/* Image column on the right */
+.preface-cover {
+  flex: 0 0 35%;             /* about 35% width for the cover */
+  min-width: 220px;
+}
+
+/* Make the cover image smaller and responsive */
+.preface-cover .book-cover {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  margin: 0;                 /* no extra margin; spacing comes from gap */
+}
+

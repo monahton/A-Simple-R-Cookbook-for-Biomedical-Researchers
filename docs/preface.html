@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>7.6 The pipe %&gt;% | A Simple R Cookbook for Biomedical Researchers</title>
-  <meta name="description" content="7.6 The pipe %&gt;% | A Simple R Cookbook for Biomedical Researchers" />
+  <title>Preface | A Simple R Cookbook for Biomedical Researchers</title>
+  <meta name="description" content="Preface | A Simple R Cookbook for Biomedical Researchers" />
   <meta name="generator" content="bookdown 0.46 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="7.6 The pipe %&gt;% | A Simple R Cookbook for Biomedical Researchers" />
+  <meta property="og:title" content="Preface | A Simple R Cookbook for Biomedical Researchers" />
   <meta property="og:type" content="book" />
   <meta property="og:image" content="/cover.svg" />
   
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="7.6 The pipe %&gt;% | A Simple R Cookbook for Biomedical Researchers" />
+  <meta name="twitter:title" content="Preface | A Simple R Cookbook for Biomedical Researchers" />
   
   
   <meta name="twitter:image" content="/cover.svg" />
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="group_by-and-summarise-grouped-summaries.html"/>
-<link rel="next" href="putting-it-together-a-typical-cleaning-pipeline.html"/>
+<link rel="prev" href="index.html"/>
+<link rel="next" href="introduction-r-for-bioinformatics-and-biomedical-data-analysis.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -256,26 +256,52 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="the-pipe" class="section level2 hasAnchor" number="7.6">
-<h2><span class="header-section-number">7.6</span> The pipe %&gt;%<a href="the-pipe.html#the-pipe" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>You may have noticed the <code>%&gt;%</code> symbol (the <strong>pipe</strong>).</p>
-<p><code>x %&gt;% f()</code> is a readable way of writing <code>f(x)</code>. It passes the object on the left as the first argument to the function on the right.</p>
-<p>Instead of nesting function calls like this:</p>
-<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb58-1"><a href="the-pipe.html#cb58-1" tabindex="-1"></a><span class="fu">summarise</span>(<span class="fu">group_by</span>(clinical, treatment), <span class="at">mean_delta =</span> <span class="fu">mean</span>(delta_biomarker))</span></code></pre></div>
-<p>we can write:</p>
-<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb59-1"><a href="the-pipe.html#cb59-1" tabindex="-1"></a>clinical <span class="sc">%&gt;%</span></span>
-<span id="cb59-2"><a href="the-pipe.html#cb59-2" tabindex="-1"></a>  <span class="fu">group_by</span>(treatment) <span class="sc">%&gt;%</span></span>
-<span id="cb59-3"><a href="the-pipe.html#cb59-3" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">mean_delta =</span> <span class="fu">mean</span>(delta_biomarker))</span></code></pre></div>
-<p>This flows from top to bottom, making complex transformations much easier to read.</p>
-<p>(Modern R also has a base pipe <code>|&gt;</code>; both are acceptable. This book uses <code>%&gt;%</code> because it is common in the tidyverse.)</p>
+<div id="preface" class="section level1 unnumbered hasAnchor">
+<h1>Preface<a href="preface.html#preface" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<!-- Paste the rest of your existing preface text here. For example: -->
+<p>This book is written for wet lab scientists, clinicians, and other biomedical
+researchers who want to analyse their own data in R without becoming full‑time
+programmers.</p>
+<p>We will focus on <strong>data analysis workflows</strong> rather than deep computer science.
+You will learn enough R to be dangerous in the good sense: able to clean,
+explore, visualise, and model your data, while understanding what you are
+doing and why.</p>
+<p>Throughout the book:</p>
+<ul>
+<li>We assume you have basic familiarity with experimental design and statistics
+(e.g. p-values, means, standard deviation), but we explain concepts when we use them.</li>
+<li>We avoid jargon as much as possible and define it when we cannot.</li>
+<li>We show complete examples that you can copy, paste, and adapt to your own projects.</li>
+</ul>
+<p>The examples are inspired by typical biomedical datasets: gene expression,
+clinical measurements, and simple experimental readouts. We will use a small,
+simulated biomedical dataset packaged in an R package called <strong>biomedrdata</strong> that
+you can install and load.</p>
+<p>What you will learn:</p>
+<ul>
+<li>How to work comfortably in <strong>R</strong> and <strong>RStudio</strong>.</li>
+<li>The main <strong>data types</strong> and <strong>data structures</strong> in R that appear all the time in analysis scripts.</li>
+<li>How to <strong>import, clean, and wrangle</strong> biomedical data into analysis-ready form.</li>
+<li>How to <strong>join</strong> multiple tables (for example, clinical data + assay data).</li>
+<li>How to <strong>visualise</strong> your data to check quality and communicate results.</li>
+<li>How to apply these skills to a realistic biomedical dataset.</li>
+</ul>
+<p>What you will <em>not</em> learn in depth:</p>
+<ul>
+<li>General-purpose software engineering, advanced programming paradigms, or how to build complex R packages from scratch.</li>
+<li>The full mathematical theory behind all statistical methods.</li>
+</ul>
+<p>Those topics are important, but not necessary for you to become effective at analysing your own data.</p>
+<p>If you can run PCRs, Western blots, or cell culture experiments, you can absolutely learn to use R. We will go step by step, with many examples and explanations. Occasionally, we might even make a light joke to keep things human, but we will keep the overall tone professional and focused.</p>
+
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="group_by-and-summarise-grouped-summaries.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="putting-it-together-a-typical-cleaning-pipeline.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="introduction-r-for-bioinformatics-and-biomedical-data-analysis.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
